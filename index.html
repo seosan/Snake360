@@ -3,13 +3,21 @@
 	<head>
 		<meta charset = "utf-8">
 		<title>HTML5 Snake360</title>
-	<link type = "text/css" href="style.css" />
-	</head>
-	<body>
-		HTML5 + JavaScript <br/>
-		360도 회전 스네이크 게임 <br />
-		<canvas width = "800" height = "500"></canvas>
 
+
+		<link rel = "stylesheet" href="style.css">
+	</head>
+	<body onload="init()">
+
+	
+		HTML5 + JavaScript <br/>
+		360도 회전 스네이크 게임 <br/>
+		<div id = "maintext"> </div>
+		
+		<canvas id='canvas' width = "800" height = "500">Canvas 미지원</canvas>
+
+		<script src="JavaScript/render.js"></script>
+		<script src="JavaScript/snake.js"></script>
 
 	
 	</body>
