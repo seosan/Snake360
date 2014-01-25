@@ -11,15 +11,17 @@ function clears() {
 function render() {
 	clears();
 
+	for(var i = 0; i<length*(30-speed*10); i++) {
+		if(Math.floor(i%(30-speed*10))==0) drawBody(partx[i],party[i]);
+	}
 
-	for(var i in partx)
-	drawBody(partx[i],party[i], '#C8A944');
-	
-	drawBody(feedx, feedy, '#FF0000');
+	ctx.closePath();
+	drawBody(feedx, feedy);
 }
 
-function drawBody(x, y, c) {
-	ctx.fillStyle=c;
+function drawBody(x, y) {
+	ctx.fillStyle='#FF00FF';
+	ctx.beginPath();
 	ctx.arc(x, y, 10, 0, Math.PI*2, true);
 	ctx.fill();
 }

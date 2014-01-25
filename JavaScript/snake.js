@@ -2,9 +2,11 @@ var center_x = 400;
 var center_y = 250;
 var x=300, y=250;
 var direction = 10;
+var speed = 1;
 
 var feedx = 0;
 var feedy = 0;
+var length = 1;
 
 var partx = new Array(150);
 var party = new Array(150);
@@ -44,15 +46,17 @@ function feed() {
 
 function move() {
 
-	for(var i in partx) {
-		partx[i] -= Math.cos(direction * Math.PI/180)*1;
-		party[i] += Math.sin(direction * Math.PI/180)*1;
-	}
+	partx.unshift(partx[0]-=Math.cos(direction*Math.PI/180)*speed);
+	party.unshift(party[0]+=Math.sin(direction*Math.PI/180)*speed);
+
 	
+	document.all("ctext").innerHTML=
+		Math.sqrt(Math.pow(partx[0]-feedx,2)+Math.pow(party[0]-feedy,2));
 	checkeat();
 	render();
 
 }
+
 
 function keyPress() {
 	if(keyinput)
@@ -69,13 +73,17 @@ function keyPress() {
 }
 
 function turnleft() {
-	direction += 5;
+	direction += speed*3;
 }
 function turnright() {
-	direction -= 5;
+	direction -= speed*3;
 }
 
 function checkeat() {
-	if(Math.sqrt(Math.pow(partx[0]-feedx)+Math.pow(party[0]-feedy))<10)
-		addbody();
+	if(Math.sqrt(Math.pow(partx[0]-feedx,2)+Math.pow(party[0]-feedy,2))<10) {
+		
+		length++;
+		if(speed<2) speed+=0.1;
+		feed();
+	}
 }
